@@ -21,6 +21,8 @@ public class Driver {
 
         System.out.println(package3);
 
+
+
         // Step 1: Create the terminal
         // TODO M10: Create a FreightTerminal named "Port of Spain Hub"
 

@@ -57,6 +57,18 @@ public class Container {
     // --- Getters ---
     // TODO M4: Write getters for containerId, destination, maxWeightKg
 
+    public String getContainerId(){
+        return this.containerId;
+    }
+
+    public String getDestination(){
+        return this.destination;
+    }
+
+    public double getMaxWeightKg(){
+        return this.maxWeightKg;
+    }
+
     /**
      * TODO M8: Add a package to this container.
      *   Return false if: p is null, p's destination does not match, or
