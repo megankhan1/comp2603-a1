@@ -8,7 +8,7 @@ import java.util.List;
 public class Package {
 
     // TODO M1: Initialise this static counter to 1.
-    private static int nextTrackingNumber;
+    private static int nextTrackingNumber = 1;
 
     private static final List<String> VALID_DESTINATIONS = Arrays.asList(
             "Trinidad", "Barbados", "Jamaica", "Antigua", "Grenada"
@@ -43,6 +43,58 @@ public class Package {
                    int lengthCm, int widthCm, int heightCm,
                    String destination, boolean isFragile, double declaredValue) {
         // TODO M2: Write validation and field assignments here
+
+        if(senderName == null || senderName.isEmpty())
+            throw new IllegalArgumentException("Sender name must not be null or empty");
+        else
+            this.senderName = senderName;
+
+        if(receiverName == null || receiverName.isEmpty())
+            throw new IllegalArgumentException("Receiver name must not be null or empty");
+        else
+            this.receiverName = receiverName;
+
+        if(weightKg <= 0)
+            throw new IllegalArgumentException("Weight is invalid");
+        else
+            this.weightKg = weightKg;
+
+        if(lengthCm <= 0)
+            throw new IllegalArgumentException("Length invalid");
+        else
+            this.lengthCm = lengthCm;
+
+        if(widthCm <= 0)
+            throw new IllegalArgumentException("Width invalid");
+        else
+            this.widthCm = widthCm;
+
+        if(heightCm <= 0)
+            throw new IllegalArgumentException("Height invalid");
+        else
+            this.heightCm = heightCm;
+
+        boolean validDestination = false;
+
+        for(String destinationList : VALID_DESTINATIONS) {
+            if (destination.equals(destinationList)) {
+                validDestination = true;
+                break;
+            }
+        }
+
+        if(!validDestination)
+            throw new IllegalArgumentException("Destination invalid");
+
+        this.destination = destination;
+
+        this.isFragile = isFragile;
+
+        this.declaredValue = declaredValue;
+
+        trackingId = String.format("PKG-%04d", nextTrackingNumber);
+
+        nextTrackingNumber++;
     }
 
     /**
@@ -53,6 +105,9 @@ public class Package {
     public Package(String senderName, String receiverName, double weightKg,
                    int lengthCm, int widthCm, int heightCm, String destination) {
         // TODO M3: Write the this(...) call here
+
+        this(senderName, receiverName, weightKg, lengthCm, widthCm, heightCm,
+                destination, false, 0.0);
     }
 
     // --- Getters ---
@@ -60,6 +115,46 @@ public class Package {
     //   getTrackingId(), getSenderName(), getReceiverName(), getWeightKg(),
     //   getLengthCm(), getWidthCm(), getHeightCm(), getDestination(),
     //   isFragile(), getDeclaredValue()
+
+    public String getTrackingId(){
+        return this.trackingId;
+    }
+
+    public String getSenderName(){
+        return this.senderName;
+    }
+
+    public String getReceiverName(){
+        return this.receiverName;
+    }
+
+    public double getWeightKg(){
+        return this.weightKg;
+    }
+
+    public int getLengthCm(){
+        return this.lengthCm;
+    }
+
+    public int getWidthCm(){
+        return this.widthCm;
+    }
+
+    public int getHeightCm(){
+        return this.heightCm;
+    }
+
+    public String getDestination(){
+        return this.destination;
+    }
+
+    public boolean isFragile(){
+        return this.isFragile;
+    }
+
+    public double getDeclaredValue(){
+        return this.declaredValue;
+    }
 
     // --- Computed methods ---
 
@@ -104,6 +199,8 @@ public class Package {
      */
     @Override
     public String toString() {
-        return ""; // TODO M7
+        return "Sender: " + senderName + " Receiver: " + receiverName + " Weight: " +
+                weightKg + " Length: " + lengthCm + " Width: " + widthCm + " Height: " +
+                heightCm + " Destination: " + destination + " Tracking Id: " + trackingId;  // TODO M7
     }
 }

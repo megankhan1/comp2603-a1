@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Container {
 
     // TODO M1: Initialise this static counter to 1.
-    private static int nextContainerId;
+    private static int nextContainerId = 1;
 
     // TODO M1: These fields are declared but not yet assigned.
     // Your constructors (M2, M3) must assign them.
@@ -26,6 +26,22 @@ public class Container {
      */
     public Container(String destination, double maxWeightKg) {
         // TODO M2
+
+        if(destination == null || destination.isEmpty())
+            throw new IllegalArgumentException("Invalid destination");
+        else
+            this.destination = destination;
+
+        if(maxWeightKg <= 0)
+            throw new IllegalArgumentException("Invalid maximum weight");
+        else
+            this.maxWeightKg = maxWeightKg;
+
+        containerId = String.format("CNT-%03d", nextContainerId);
+
+        nextContainerId++;
+
+        this.packages = new ArrayList<Package>();
     }
 
     /**
@@ -34,6 +50,8 @@ public class Container {
      */
     public Container(String destination) {
         // TODO M3: Write the this(...) call here
+
+        this(destination, 500.0);
     }
 
     // --- Getters ---
