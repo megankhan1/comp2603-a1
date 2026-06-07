@@ -17,11 +17,25 @@ public class Driver {
         Package package3 = new Package("Alice", "Bob", 5.0, 40, 30, 20, "Trinidad", false,
                 0.0);
 
+        Package package4 = new Package("Alice", "Bob", 2.0, 60, 40, 40, "Trinidad", false, 0.0);
+
+        Package package5 = new Package("Alice", "Bob", 8.0, 20, 20, 20, "Trinidad", false, 0.0);
+
         System.out.println(package2);
 
         System.out.println(package3);
 
+        System.out.println(package4.getVolumeCm3());
 
+        System.out.println(package4.getVolumetricWeightKg());
+
+        System.out.println(package4.getBillableWeightKg());
+
+        System.out.println(package5.getVolumeCm3());
+
+        System.out.println(package5.getVolumetricWeightKg());
+
+        System.out.println(package5.getBillableWeightKg());
 
         // Step 1: Create the terminal
         // TODO M10: Create a FreightTerminal named "Port of Spain Hub"
