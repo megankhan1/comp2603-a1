@@ -221,8 +221,17 @@ public class Package {
      */
     @Override
     public String toString() {
-        return "Sender: " + senderName + " Receiver: " + receiverName + " Weight: " +
-                weightKg + " Length: " + lengthCm + " Width: " + widthCm + " Height: " +
-                heightCm + " Destination: " + destination + " Tracking Id: " + trackingId;  // TODO M7
+
+        String base = String.format("PKG-%04d  %s -> %s  %s  %.2f kg $%.2f",
+                Integer.parseInt(trackingId.substring(4)),
+                senderName, receiverName, destination,
+                getBillableWeightKg(), getShippingCost());
+
+        if(isFragile)
+            base += " [FRAGILE";
+
+        return base;
+
+        // TODO M7
     }
 }

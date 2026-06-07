@@ -21,7 +21,7 @@ public class Driver {
 
         Package package5 = new Package("Alice", "Bob", 8.0, 20, 20, 20, "Trinidad", false, 0.0);
 
-        System.out.println(package2);
+        System.out.println(package1);
 
         System.out.println(package3);
 
