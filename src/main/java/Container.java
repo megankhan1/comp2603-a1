@@ -76,35 +76,54 @@ public class Container {
      *   Return true on success.
      */
     public boolean addPackage(Package p) {
-        return false; // TODO M8
+
+        if(p == null || !p.getDestination().equals(destination) || getCurrentWeightKg() + p.getWeightKg() > maxWeightKg)
+            return false;
+
+        packages.add(p);
+        return true;
+        // TODO M8
     }
 
     /**
      * TODO M8: Return the sum of all packages' weightKg.
      */
     public double getCurrentWeightKg() {
-        return 0.0; // TODO M8
+
+        double currentWeight = 0.0;
+
+        for(Package pkg : packages){
+            currentWeight += pkg.getWeightKg();
+        }
+        return currentWeight; //  TODO M8
     }
 
     /**
      * TODO M8: Return maxWeightKg - getCurrentWeightKg()
      */
     public double getRemainingCapacityKg() {
-        return 0.0; // TODO M8
+        return maxWeightKg - getCurrentWeightKg(); // TODO M8
     }
 
     /**
      * TODO M8: Return the number of packages in this container.
      */
     public int getPackageCount() {
-        return 0; // TODO M8
+        return packages.size(); // TODO M8
     }
 
     /**
      * TODO M8: Return the sum of all packages' getShippingCost().
      */
     public double getTotalRevenue() {
-        return 0.0; // TODO M8
+
+        double shippingCost = 0.0;
+
+        for(Package pkg : packages){
+            shippingCost += pkg.getWeightKg();
+        }
+        return shippingCost;
+        // TODO M8
     }
 
     /**
