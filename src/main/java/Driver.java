@@ -12,10 +12,10 @@ public class Driver {
         Package package1 = new Package("Alice", "Bob", 5.0, 40, 30, 20, "Trinidad", false,
                 0.0);
 
-        Package package2 = new Package("Alice", "Bob", 5.0, 40, 30, 20, "Trinidad");
+        Package package2 = new Package("Alice", "Bob", 2.0, 60, 40, 40, "Barbados", true, 500.0);
 
-        Package package3 = new Package("Alice", "Bob", 5.0, 40, 30, 20, "Trinidad", false,
-                0.0);
+        Package package3 = new Package("Alice", "Bob", 4.0, 45, 35, 25, "Trinidad", false,
+                100.0);
 
         Package package4 = new Package("Alice", "Bob", 2.0, 60, 40, 40, "Trinidad", false, 0.0);
 
@@ -36,6 +36,12 @@ public class Driver {
         System.out.println(package5.getVolumetricWeightKg());
 
         System.out.println(package5.getBillableWeightKg());
+
+        System.out.println(package1.getShippingCost());
+
+        System.out.println(package2.getShippingCost());
+
+        System.out.println(package3.getShippingCost());
 
         // Step 1: Create the terminal
         // TODO M10: Create a FreightTerminal named "Port of Spain Hub"
