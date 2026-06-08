@@ -57,7 +57,29 @@ public class FreightTerminal {
      *   6. Return the number of containers created.
      */
     public int packContainers() {
-        return 0; // TODO M8
+
+        ArrayList<String> destinations = new ArrayList<String>();
+
+        for(Package p : pendingPackages){
+            if(!destinations.contains(p.getDestination())){
+                destinations.add(p.getDestination());
+            }
+        }
+
+        for(String destination : destinations){
+            Container c = new Container(destination);
+            for(Package p : pendingPackages){
+                if(p.getDestination().contains(destination)){
+                    c.addPackage(p);
+                }
+            }
+            activeContainers.add(c);
+        }
+
+        pendingPackages.clear();
+
+
+        return destinations.size(); // TODO M8
     }
 
     /**
