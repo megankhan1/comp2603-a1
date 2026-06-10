@@ -180,6 +180,23 @@ public class FreightTerminal {
      *     ...
      */
     public void printDailyReport() {
+
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(String.format("=== Daily Report: %s ===\n", terminalName));
+        sb.append(String.format("Packages received: %d\nContainers packed: %d\nPackages shipped: %d\nTotal revenue: $%.2f",
+                getPendingCount(), dispatchedContainers.size(), getTotalPackagesShipped(), getTotalRevenue()));
+
+        sb.append("Revenue by destination: \n");
+
+        System.out.println(sb);
+
+        for(Container c : dispatchedContainers){
+            System.out.println(String.format(c.getDestination() + ":" + "%-12s $%.2f (%d packages)%n", c,getTotalRevenue()));
+
+        }
+
+
         // TODO M10
     }
 }
