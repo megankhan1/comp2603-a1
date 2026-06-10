@@ -120,7 +120,7 @@ public class Container {
         double shippingCost = 0.0;
 
         for(Package pkg : packages){
-            shippingCost += pkg.getWeightKg();
+            shippingCost += pkg.getShippingCost();
         }
         return shippingCost;
         // TODO M8
@@ -138,7 +138,25 @@ public class Container {
      * Use StringBuilder and String.format.
      */
     public String getManifest() {
-        return ""; // TODO M9
+
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(String.format("%s -> %s [%d packages, %.2f / %.2f kg]",
+                containerId, destination, packages.size(),
+                getCurrentWeightKg(), maxWeightKg));
+
+        double revenue = 0.0;
+
+        for(Package pkg : packages){
+            sb.append(pkg);
+            sb.append("\n");
+
+            revenue += pkg.getShippingCost();
+        }
+
+        sb.append(String.format("Container revenue: $%.2f", revenue));
+
+        return sb.toString(); // TODO M9
     }
 
     /**
@@ -154,6 +172,8 @@ public class Container {
      */
     @Override
     public String toString() {
-        return ""; // TODO M9
+        return  String.format("%s -> %s [%d packages, %.2f / %.2f kg]",
+                containerId, destination, packages.size(),
+                getCurrentWeightKg(), maxWeightKg); // TODO M9
     }
 }

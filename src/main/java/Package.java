@@ -228,7 +228,7 @@ public class Package {
                 getBillableWeightKg(), getShippingCost());
 
         if(isFragile)
-            base += " [FRAGILE";
+            base += " [FRAGILE]";
 
         return base;
 
