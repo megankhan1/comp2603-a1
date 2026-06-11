@@ -89,54 +89,5 @@ public class Driver {
             System.out.println("PKG-9999: Not found");
         }
 
-        /*
-        System.out.println("-----------------------------------------");
-
-        System.out.println(containersCreated);
-
-        System.out.println(terminal1.getPendingCount());
-
-        System.out.println(terminal1.getActiveContainers().size());
-
-        System.out.println(terminal1.getTotalRevenue());
-
-        System.out.println(terminal1.getTotalPackagesShipped());
-
-        System.out.println(terminal1.findPackage("PKG-0001"));
-        System.out.println(terminal1.findPackage("PKG-0002"));
-        System.out.println(terminal1.findPackage("PKG-0003"));
-        System.out.println(terminal1.findPackage("PKG-0004"));
-        System.out.println(terminal1.findPackage("PKG-0005"));
-        System.out.println(terminal1.findPackage("PKG-0006"));
-        System.out.println(terminal1.findPackage("PKG-0007"));
-        System.out.println(terminal1.findPackage("PKG-0008"));
-        System.out.println(terminal1.findPackage("PKG-0009"));
-        System.out.println(terminal1.findPackage("PKG-0010"));
-        System.out.println(terminal1.findPackage("PKG-0011"));
-        System.out.println(terminal1.findPackage("PKG-0012"));
-
-        System.out.println(package1);
-
-        System.out.println(package3);
-
-        System.out.println(package4.getVolumeCm3());
-
-        System.out.println(package4.getVolumetricWeightKg());
-
-        System.out.println(package4.getBillableWeightKg());
-
-        System.out.println(package5.getVolumeCm3());
-
-        System.out.println(package5.getVolumetricWeightKg());
-
-        System.out.println(package5.getBillableWeightKg());
-
-        System.out.println(package1.getShippingCost());
-
-        System.out.println(package2.getShippingCost());
-
-        System.out.println(package3.getShippingCost());
-         */
-
     }
 }
