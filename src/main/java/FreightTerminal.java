@@ -146,4 +146,48 @@ public class FreightTerminal {
 
         }
     }
+
+    public Package cancelPackage(String trackingId){
+        for(Package p : pendingPackages){
+            if(p.getTrackingId() == trackingId){
+                pendingPackages.remove(p);
+                return p;
+            }
+        }
+
+        return null;
+    }
+
+    public String getMostProfitableDestination(){
+
+        double highestRevenue = 0.0;
+        String highestRevenueDestination = null;
+
+        for(Container c : dispatchedContainers){
+            if(c.getTotalRevenue() > highestRevenue){
+                highestRevenue = c.getTotalRevenue();
+                highestRevenueDestination = c.getDestination();
+            }
+        }
+
+        return highestRevenueDestination;
+    }
+
+    public void printPackagesByDestination(){
+        int count = 0;
+        double revenue = 0.0;
+
+        for(Container c : dispatchedContainers){
+            System.out.println("=== " + c.getDestination() + " ===");
+
+            for(Package p : c.getPackages()){
+                System.out.println(p);
+
+                count++;
+                revenue += p.getShippingCost();
+            }
+
+            System.out.println("Subtotal: %d packages, $%.2f%n%n" + count + revenue);
+        }
+    }
 }
