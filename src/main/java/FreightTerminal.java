@@ -45,9 +45,17 @@ public class FreightTerminal {
 
         for(String destination : destinations){
             Container c = new Container(destination);
+
             for(Package p : pendingPackages){
                 if(destinations.contains(p.getDestination())){
-                    c.addPackage(p);
+                    if(p.getIsExpress())
+                        c.addPackage(p);
+                }
+            }
+            for(Package p : pendingPackages){
+                if(destinations.contains(p.getDestination())){
+                    if(!p.getIsExpress())
+                        c.addPackage(p);
                 }
             }
             activeContainers.add(c);
