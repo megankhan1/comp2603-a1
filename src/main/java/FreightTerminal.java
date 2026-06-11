@@ -6,18 +6,12 @@ import java.util.ArrayList;
  */
 public class FreightTerminal {
 
-    // TODO M1: These fields are declared but not yet initialised.
-    // Your constructor (M2) must initialise them.
     private String terminalName;
     private ArrayList<Package> pendingPackages;
     private ArrayList<Container> activeContainers;
     private ArrayList<Container> dispatchedContainers;
 
-    /**
-     * TODO M2: Initialise terminalName and all three ArrayLists.
-     */
     public FreightTerminal(String terminalName) {
-        // TODO M2
 
         this.terminalName = terminalName;
 
@@ -28,37 +22,20 @@ public class FreightTerminal {
         dispatchedContainers = new ArrayList<>();
     }
 
-    /**
-     * TODO M4: Add a non-null package to pendingPackages.
-     */
     public void receivePackage(Package p) {
-        // TODO M4
 
         if(p != null){
             pendingPackages.add(p);
         }
     }
 
-    /**
-     * TODO M4: Return the size of pendingPackages.
-     */
     public int getPendingCount() {
         return pendingPackages.size();
-        // TODO M4
     }
 
-    /**
-     * TODO M8: This is the HARD method. Group pending packages by destination.
-     *   1. Collect unique destinations in the order they first appear.
-     *   2. For each destination, create a new Container (default capacity).
-     *   3. Add all pending packages for that destination to the container.
-     *   4. Move the container to activeContainers.
-     *   5. Clear pendingPackages.
-     *   6. Return the number of containers created.
-     */
     public int packContainers() {
 
-        ArrayList<String> destinations = new ArrayList<String>();
+        ArrayList<String> destinations = new ArrayList<>();
 
         for(Package p : pendingPackages){
             if(!destinations.contains(p.getDestination())){
@@ -79,13 +56,9 @@ public class FreightTerminal {
         pendingPackages.clear();
 
 
-        return destinations.size(); // TODO M8
+        return destinations.size();
     }
 
-    /**
-     * TODO M9: Move all activeContainers to dispatchedContainers.
-     *   Clear activeContainers. Return the count dispatched.
-     */
     public int dispatchAll() {
 
         int dispatchedCount = activeContainers.size();
@@ -94,13 +67,9 @@ public class FreightTerminal {
 
         activeContainers.clear();
 
-        return dispatchedCount; // TODO M9
+        return dispatchedCount;
     }
 
-    /**
-     * TODO M9: Return the sum of getTotalRevenue() across all
-     *   dispatched containers.
-     */
     public double getTotalRevenue() {
 
         double sumTotalRevenue = 0;
@@ -109,13 +78,9 @@ public class FreightTerminal {
             sumTotalRevenue += c.getTotalRevenue();
         }
 
-        return sumTotalRevenue; // TODO M9
+        return sumTotalRevenue;
     }
 
-    /**
-     * TODO M9: Return the sum of getPackageCount() across all
-     *   dispatched containers.
-     */
     public int getTotalPackagesShipped() {
 
         int sumPackageCount = 0;
@@ -124,14 +89,9 @@ public class FreightTerminal {
             sumPackageCount += c.getPackageCount();
         }
 
-        return sumPackageCount; // TODO M9
+        return sumPackageCount;
     }
 
-    /**
-     * TODO M9: Search pending, active containers, and dispatched
-     *   containers for a package with the given tracking ID.
-     *   Return the Package or null if not found.
-     */
     public Package findPackage(String trackingId) {
 
         for(Package pkg : pendingPackages){
@@ -155,30 +115,12 @@ public class FreightTerminal {
 
         return null;
 
-         // TODO M9
     }
 
-    /**
-     * Returns the list of active containers (for printing manifests in Driver).
-     */
     public ArrayList<Container> getActiveContainers() {
         return activeContainers;
     }
 
-    /**
-     * TODO M10: Print the formatted daily report.
-     * Format:
-     *   === Daily Report: Port of Spain Hub ===
-     *   Packages received:  12
-     *   Containers packed:  5
-     *   Packages shipped:   12
-     *   Total revenue:      $3248.50
-     *
-     *   Revenue by destination:
-     *     Trinidad:    $199.50 (3 packages)
-     *     Barbados:    $1403.00 (3 packages)
-     *     ...
-     */
     public void printDailyReport() {
 
         StringBuilder sb = new StringBuilder();
@@ -187,7 +129,7 @@ public class FreightTerminal {
         sb.append(String.format("Packages received: %d\nContainers packed: %d\nPackages shipped: %d\nTotal revenue: $%.2f\n",
                 getTotalPackagesShipped(), dispatchedContainers.size(), getTotalPackagesShipped(), getTotalRevenue()));
 
-        sb.append("Revenue by destination: \n");
+        sb.append("\nRevenue by destination:");
 
         System.out.println(sb);
 
@@ -195,7 +137,5 @@ public class FreightTerminal {
             System.out.println(String.format(" %-12s $%.2f (%d packages)%n", c.getDestination() + ":", c.getTotalRevenue(), c.getPackageCount()));
 
         }
-
-        // TODO M10
     }
 }
