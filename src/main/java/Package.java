@@ -170,6 +170,9 @@ public class Package {
 
         double cost = getBillableWeightKg() * ratePerKg;
 
+        if(isExpress)
+            cost *= 2;
+
         if(isFragile){
             cost *= 1.25;
         }

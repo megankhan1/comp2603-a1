@@ -10,6 +10,7 @@ public class FreightTerminal {
     private ArrayList<Package> pendingPackages;
     private ArrayList<Container> activeContainers;
     private ArrayList<Container> dispatchedContainers;
+    private int packagesReceived;
 
     public FreightTerminal(String terminalName) {
 
@@ -26,7 +27,12 @@ public class FreightTerminal {
 
         if(p != null){
             pendingPackages.add(p);
+            packagesReceived++;
         }
+    }
+
+    public int getPackagesReceived(){
+        return packagesReceived;
     }
 
     public int getPendingCount() {
@@ -135,7 +141,7 @@ public class FreightTerminal {
 
         sb.append(String.format("=== Daily Report: %s ===\n", terminalName));
         sb.append(String.format("Packages received: %d\nContainers packed: %d\nPackages shipped: %d\nTotal revenue: $%.2f\n",
-                getTotalPackagesShipped(), dispatchedContainers.size(), getTotalPackagesShipped(), getTotalRevenue()));
+                getPackagesReceived(), dispatchedContainers.size(), getTotalPackagesShipped(), getTotalRevenue()));
 
         sb.append("\nRevenue by destination:");
 
@@ -149,7 +155,7 @@ public class FreightTerminal {
 
     public Package cancelPackage(String trackingId){
         for(Package p : pendingPackages){
-            if(p.getTrackingId() == trackingId){
+            if(p.getTrackingId().equals(trackingId)){
                 pendingPackages.remove(p);
                 return p;
             }
@@ -174,20 +180,15 @@ public class FreightTerminal {
     }
 
     public void printPackagesByDestination(){
-        int count = 0;
-        double revenue = 0.0;
 
         for(Container c : dispatchedContainers){
             System.out.println("=== " + c.getDestination() + " ===");
 
             for(Package p : c.getPackages()){
                 System.out.println(p);
-
-                count++;
-                revenue += p.getShippingCost();
             }
 
-            System.out.println("Subtotal: %d packages, $%.2f%n%n" + count + revenue);
+            System.out.println("Subtotal: %d packages, $%.2f%n%n" + c.getPackageCount() + c.getTotalRevenue());
         }
     }
 }
